@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Blog/css/main.css">
+
+
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nick45chen.github.io","root":"/Blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="IntroductionCoordinatorLayout，字面上翻譯過來是一個協調者佈局，官方解釋為它是一個超級FrameLayout。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[MaterialDesign] Android CoordinatorLayout">
+<meta property="og:url" content="https://nick45chen.github.io/Blog/2018/02/05/MaterialDesign-Android-CoordinatorLayout/index.html">
+<meta property="og:site_name" content="代碼玩家 Nick&#39;s Blog">
+<meta property="og:description" content="IntroductionCoordinatorLayout，字面上翻譯過來是一個協調者佈局，官方解釋為它是一個超級FrameLayout。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2018/02/05/MaterialDesign-Android-CoordinatorLayout/coordinator01.gif">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2018/02/05/MaterialDesign-Android-CoordinatorLayout/coordinator01.gif">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2018/02/05/MaterialDesign-Android-CoordinatorLayout/coordinator02.gif">
+<meta property="article:published_time" content="2018-02-05T15:56:55.000Z">
+<meta property="article:modified_time" content="2022-03-14T15:15:04.233Z">
+<meta property="article:author" content="Nick Chen">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Material Design">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nick45chen.github.io/Blog/2018/02/05/MaterialDesign-Android-CoordinatorLayout/coordinator01.gif">
+
+<link rel="canonical" href="https://nick45chen.github.io/Blog/2018/02/05/MaterialDesign-Android-CoordinatorLayout/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>[MaterialDesign] Android CoordinatorLayout | 代碼玩家 Nick's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">代碼玩家 Nick's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nick45chen.github.io/Blog/2018/02/05/MaterialDesign-Android-CoordinatorLayout/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="Nick Chen">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="代碼玩家 Nick's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [MaterialDesign] Android CoordinatorLayout
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-02-05 15:56:55" itemprop="dateCreated datePublished" datetime="2018-02-05T15:56:55+00:00">2018-02-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-03-14 15:15:04" itemprop="dateModified" datetime="2022-03-14T15:15:04+00:00">2022-03-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><strong>CoordinatorLayout</strong>，字面上翻譯過來是一個協調者佈局，官方解釋為它是一個超級<strong>FrameLayout</strong>。<span id="more"></span><br>大部分使用場景中都搭配<strong>AppbarLayout</strong>、<strong>CollapsingToolbarLayout</strong>、<strong>Toolbar</strong>來使用，導致在不知不覺中，大家也有可能認為<strong>CoordinatorLayout</strong>只能跟這幾個佈局一起使用。<br>其實<strong>CoordinatorLayout</strong>的功能可不止於此，本文就簡單介紹<strong>CoordinatorLayout</strong>的強大功能</p>
+<p><strong>CoordinatorLayout</strong>最主要兩的作用<br>1.當作根佈局<br>2.當作主要容器，協調一個或多個子View行為</p>
+<p>接下來我們來看看範例：</p>
+<img src="coordinator01.gif" width=50% height=50% align=center/>
+
+<p>可以看到上圖佈局中有兩個<strong>Button1</strong>、<strong>Button2</strong>，移動<strong>Button1</strong>，<strong>Button2</strong>也會跟著移動。</p>
+<p>如果不使用<strong>CoodinatorLayout</strong>來實現，那麼兩個<strong>Button</strong>就必須相互持有，然後再<strong>onTouchEvent裡做判斷</strong>，如果需要更多的<strong>View</strong>根據<strong>Button1</strong>的移動，做出相應的響應，實現起來除了耦合度很高，要寫出完整的判斷是也相當不容易。</p>
+<h2 id="Behaviors"><a href="#Behaviors" class="headerlink" title="Behaviors"></a>Behaviors</h2><p><strong>CoordinatorLayout</strong>使用核心就是<strong>Behaviors</strong>，透過<strong>Behaviors</strong>可以執行你訂製的動作，在<strong>Behaviors</strong>中，有兩種角色<br>1.<strong>Dependency</strong>指的是<strong>Behaviors</strong>依賴的View，如上圖中的<strong>Button1</strong><br>2.<strong>Child</strong>指的是要執行<strong>Behaviors</strong>動作的子<strong>View</strong>，如上圖的<strong>Button2</strong></p>
+<p>接下來我們來實作<strong>Behavior</strong>去繼承<strong>CoordinatorLayout.Behavior<T><strong>，泛行參數T也就是我們要執行動作的</strong>View</strong>類，然後實現兩種方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">layoutDependsOn</span><span class="params">(CoordinatorLayout parent, T child, View dependency)</span> &#123;</span><br><span class="line">   	<span class="comment">// 判斷 child 是否依賴 Dependency</span></span><br><span class="line">   	<span class="comment">// 返回 false 表示 child 不依賴 Dependency</span></span><br><span class="line">       <span class="keyword">return</span> <span class="built_in">super</span>.layoutDependsOn(parent, child, dependency);</span><br><span class="line">   &#125;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onDependentViewChanged</span><span class="params">(CoordinatorLayout parent, T child, View dependency)</span> &#123;</span><br><span class="line">   	<span class="comment">// child 具體要執行的行為</span></span><br><span class="line">   	<span class="comment">// 當 Dependency 發生變化時(位置、寬、高等)會執行此方法</span></span><br><span class="line">   	<span class="comment">// 返回 true 表示 child 要作出相應的變化，否則 false</span></span><br><span class="line">       <span class="keyword">return</span> <span class="built_in">super</span>.onDependentViewChanged(parent, child, dependency);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>有了上述的觀念後接下來實作<strong>MyBehavior</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyBehavior</span> <span class="keyword">extends</span> <span class="title class_">CoordinatorLayout</span>.Behavior&lt;Button&gt; &#123;</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyBehavior</span><span class="params">(Context context, AttributeSet attrs)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(context, attrs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">layoutDependsOn</span><span class="params">(CoordinatorLayout parent, Button child, View dependency)</span> &#123;</span><br><span class="line">    	<span class="comment">// 如果依賴是 CustomButton 的實例，返回 true</span></span><br><span class="line">        <span class="keyword">return</span> dependency <span class="keyword">instanceof</span> CustomButton;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onDependentViewChanged</span><span class="params">(CoordinatorLayout parent, Button child, View dependency)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 根據 dependency 的位置變化，設置 Button 的位置 </span></span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">top</span> <span class="operator">=</span> dependency.getTop();</span><br><span class="line"></span><br><span class="line">        setPosition(child, top);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">setPosition</span><span class="params">(View view, <span class="type">int</span> y)</span> &#123;</span><br><span class="line">        CoordinatorLayout.<span class="type">MarginLayoutParams</span> <span class="variable">layoutParams</span> <span class="operator">=</span> (CoordinatorLayout.MarginLayoutParams)view.getLayoutParams();</span><br><span class="line">        layoutParams.topMargin = y;</span><br><span class="line">        view.setLayoutParams(layoutParams);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<strong>Layout</strong>裡添加自訂義的<strong>MyBehavior</strong>，<strong>Button</strong>就會依照**Dependency(CustomButton)**的變化，作出相應的行為</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span><br><span class="line">&lt;android.support.design.widget.CoordinatorLayout</span><br><span class="line">    xmlns:android=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span><br><span class="line">    xmlns:app=<span class="string">&quot;http://schemas.android.com/apk/res-auto&quot;</span></span><br><span class="line">    xmlns:tools=<span class="string">&quot;http://schemas.android.com/tools&quot;</span></span><br><span class="line">    android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">    android:layout_height=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">    tools:context=<span class="string">&quot;net.nickchen45.coordinatorlayout.MainActivity&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;android.support.v7.widget.AppCompatButton</span><br><span class="line">        android:layout_width=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">        android:layout_height=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">        android:text=<span class="string">&quot;@string/button_two&quot;</span></span><br><span class="line">        android:background=<span class="string">&quot;@color/teal_500&quot;</span></span><br><span class="line">        android:textColor=<span class="string">&quot;@android:color/white&quot;</span></span><br><span class="line">        android:layout_marginTop=<span class="string">&quot;0dp&quot;</span></span><br><span class="line">        android:layout_gravity=<span class="string">&quot;right&quot;</span></span><br><span class="line">        app:layout_behavior=<span class="string">&quot;net.nickchen45.coordinatorlayout.MyBehavior&quot;</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;net.nickchen45.coordinatorlayout.CustomButton</span><br><span class="line">        android:layout_width=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">        android:layout_height=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">        android:text=<span class="string">&quot;@string/button_one&quot;</span></span><br><span class="line">        android:background=<span class="string">&quot;@color/light_blue_500&quot;</span></span><br><span class="line">        android:textColor=<span class="string">&quot;@android:color/white&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/android.support.design.widget.CoordinatorLayout&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<img src="coordinator01.gif" width=50% height=50% align=center/>
+
+<p>就算增加一個<strong>Button3</strong>，也是輕而易舉</p>
+<img src="coordinator02.gif" width=50% height=50% align=center/>
+
+<p>參考資料：<br><a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.html">Android CoordinatorLayout</a><br><a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.Behavior.html">Android CoordinatorLayout.Behavior</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Blog/tags/Android/" rel="tag"># Android</a>
+              <a href="/Blog/tags/Material-Design/" rel="tag"># Material Design</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Blog/2018/01/28/MaterialDesign-Android-Tabs/" rel="prev" title="[MaterialDesign] Android Tabs">
+      <i class="fa fa-chevron-left"></i> [MaterialDesign] Android Tabs
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Blog/2018/02/07/MaterialDesign-Android-AppBarLayout/" rel="next" title="[MaterialDesign] Android AppBarLayout">
+      [MaterialDesign] Android AppBarLayout <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Behaviors"><span class="nav-number">2.</span> <span class="nav-text">Behaviors</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Nick Chen</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Blog/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Nick Chen</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Blog/js/utils.js"></script>
+
+<script src="/Blog/js/motion.js"></script>
+
+
+<script src="/Blog/js/schemes/muse.js"></script>
+
+
+<script src="/Blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

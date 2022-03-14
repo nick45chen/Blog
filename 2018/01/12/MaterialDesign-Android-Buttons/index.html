@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Blog/css/main.css">
+
+
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nick45chen.github.io","root":"/Blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Introduction在Material Design中，Button 共分為三類">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[MaterialDesign] Android Buttons">
+<meta property="og:url" content="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/index.html">
+<meta property="og:site_name" content="代碼玩家 Nick&#39;s Blog">
+<meta property="og:description" content="Introduction在Material Design中，Button 共分為三類">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/button01.png">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/button02.png">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/button03.png">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/button04.png">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/button05.png">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/button06.png">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/button07.png">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/button08.png">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/button09.png">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/button10.png">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/button11.png">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/button12.png">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/button13.png">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/button14.png">
+<meta property="article:published_time" content="2018-01-12T14:43:24.000Z">
+<meta property="article:modified_time" content="2022-03-14T15:15:04.197Z">
+<meta property="article:author" content="Nick Chen">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Material Design">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/button01.png">
+
+<link rel="canonical" href="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>[MaterialDesign] Android Buttons | 代碼玩家 Nick's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">代碼玩家 Nick's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nick45chen.github.io/Blog/2018/01/12/MaterialDesign-Android-Buttons/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="Nick Chen">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="代碼玩家 Nick's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [MaterialDesign] Android Buttons
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-01-12 14:43:24" itemprop="dateCreated datePublished" datetime="2018-01-12T14:43:24+00:00">2018-01-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-03-14 15:15:04" itemprop="dateModified" datetime="2022-03-14T15:15:04+00:00">2022-03-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>在<strong>Material Design</strong>中，Button 共分為三類<span id="more"></span></p>
+<h3 id="Raised-button"><a href="#Raised-button" class="headerlink" title="Raised button"></a>Raised button</h3><p>凸起式按鈕，按下去會有一個下壓的效果<br><img src="button01.png" width=50% height=50% align=center/></p>
+<h3 id="Flat-button"><a href="#Flat-button" class="headerlink" title="Flat button"></a>Flat button</h3><p>平面按鈕，也稱作純文本按鈕，並沒有像<strong>Raised buttons</strong>一樣，有下壓效果，常用於 <strong>dialog</strong>、<strong>toolbar</strong>中<br><img src="button02.png" width=50% height=50% align=center/><br><img src="button03.png" width=50% height=50% align=center/></p>
+<h3 id="Floating-button"><a href="#Floating-button" class="headerlink" title="Floating button"></a>Floating button</h3><p>顧名思義就是浮著的Button，在設計上通常一個介面只會存在一個，代表此頁最常見的功能鈕<br><img src="button04.png" width=50% height=50% align=center/><br><img src="button05.png" width=50% height=50% align=center/></p>
+<p>接下來我們來看看在<strong>Android</strong>裡如何實現。</p>
+<h2 id="Create-a-Raised-button"><a href="#Create-a-Raised-button" class="headerlink" title="Create a Raised button"></a>Create a Raised button</h2><p>使用<strong>Raised buttons</strong>很容易，只要在 layout 裡直接引用<strong>AppConpact Library</strong>裡的，具有<strong>Material features</strong> 的 <strong>AppCompatButton</strong> 就可以了</p>
+<p><strong>layout:</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;android.support.v7.widget.AppCompatButton</span><br><span class="line">      android:layout_width=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">      android:layout_height=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">      android:text=<span class="string">&quot;@string/raised_button&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>運行效果如下：<br><img src="button06.png" width=50% height=50% align=center/></p>
+<p>如何更換<strong>AppCompatButton</strong>的按鈕顏色呢？<br>首先打開<strong>sytles.xml</strong>文件，在裡面創建一個 new style 定義背景及文字顏色</p>
+<p><strong>styles.xml:</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;resources&gt;</span><br><span class="line">   ...</span><br><span class="line">   &lt;style name=<span class="string">&quot;RaiseButton&quot;</span> parent=<span class="string">&quot;Widget.AppCompat.Button.Colored&quot;</span>&gt;</span><br><span class="line">        &lt;item name=<span class="string">&quot;android:backgroundTint&quot;</span>&gt;@color/colorRaisedButton&lt;/item&gt;</span><br><span class="line">        &lt;item name=<span class="string">&quot;android:textColor&quot;</span>&gt;@color/colorRaisedButtonText&lt;/item&gt;</span><br><span class="line">   &lt;/style&gt;</span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure>
+
+<p>接著再回到 layout 文件的<strong>AppCompatButton</strong>中，設定剛剛新增的 style</p>
+<p><strong>layout:</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;android.support.v7.widget.AppCompatButton</span><br><span class="line">       android:layout_width=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">       android:layout_height=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">       android:text=<span class="string">&quot;@string/raised_button&quot;</span></span><br><span class="line">       style=<span class="string">&quot;@style/RaiseButton&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>運行效果如下：<br><img src="button07.png" width=50% height=50% align=center/></p>
+<h2 id="Create-a-Flat-button"><a href="#Create-a-Flat-button" class="headerlink" title="Create a Flat button"></a>Create a Flat button</h2><p>創建<strong>Flat button</strong>也很容易，打開<strong>sytles.xml</strong>文件，在裡面創建一個 new style，<strong>Widget.AppCompat.Button.Borderless</strong> 表示你的按鈕背景為透明，當然你也可以在<strong>style</strong>裡，定義文字的顏色</p>
+<p><strong>styles.xml:</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;resources&gt;</span><br><span class="line">   ...</span><br><span class="line">   &lt;style name=<span class="string">&quot;FlatButton&quot;</span> parent=<span class="string">&quot;Widget.AppCompat.Button.Borderless&quot;</span>&gt;</span><br><span class="line">     </span><br><span class="line">   &lt;/style&gt;</span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure>
+
+<p>接著創建一個<strong>AppCompatButton</strong>，把<strong>sytle</strong>設定進去就好</p>
+<p><strong>layout:</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;android.support.v7.widget.AppCompatButton</span><br><span class="line">        android:layout_width=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">        android:layout_height=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">        android:text=<span class="string">&quot;@string/flat_button&quot;</span></span><br><span class="line">        style=<span class="string">&quot;@style/FlatButton&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>運行效果如下：<br><img src="button08.png" width=50% height=50% align=center/></p>
+<h2 id="Create-a-Floating-Action-Button"><a href="#Create-a-Floating-Action-Button" class="headerlink" title="Create a Floating Action Button"></a>Create a Floating Action Button</h2><p>接下來我們來創建<strong>Floating Action Buttonn</strong>，首先要先確認<strong>Design Library</strong>有加進我們的<strong>Project</strong><br><img src="button09.png" width=100% height=100% align=center/></p>
+<p>之後就可以在 layout 裡直接引用了</p>
+<p><strong>layout:</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;android.support.design.widget.FloatingActionButton</span><br><span class="line">       android:<span class="built_in">id</span>=<span class="string">&quot;@+id/fab_btn&quot;</span></span><br><span class="line">       android:layout_width=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">       android:layout_height=<span class="string">&quot;wrap_content&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>運行效果如下：<br><img src="button10.png" width=50% height=50% align=center/></p>
+<p>你也可以在<strong>Floating Action Buttonn</strong>中，添加icon</p>
+<p><strong>layout:</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;android.support.design.widget.FloatingActionButton</span><br><span class="line">       android:<span class="built_in">id</span>=<span class="string">&quot;@+id/fab_btn&quot;</span></span><br><span class="line">       android:layout_width=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">       android:layout_height=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">       android:src=<span class="string">&quot;@drawable/ic_dialog_email&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>運行效果如下：<br><img src="button11.png" width=50% height=50% align=center/></p>
+<p>設定<strong>Floating Action Buttonn</strong>的size<br>以 size 可分為:<br><strong>1.noraml circle &#x3D; 56x56dp</strong><br><strong>2.Mini circle &#x3D; 40x40dp</strong></p>
+<p><strong>layout:</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;android.support.design.widget.FloatingActionButton</span><br><span class="line">       android:<span class="built_in">id</span>=<span class="string">&quot;@+id/fab_btn&quot;</span></span><br><span class="line">       android:layout_width=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">       android:layout_height=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">       android:src=<span class="string">&quot;@drawable/ic_dialog_email&quot;</span></span><br><span class="line">       app:fabSize=<span class="string">&quot;normal&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>運行效果如下：<br><img src="button12.png" width=70% height=70% align=center/></p>
+<p><strong>Floating Action Buttonn</strong>還有一個很符合此命名的屬性 elevation<br>其中 elevation 設定的 DP 越大，則按鈕背後的陰影也會越大</p>
+<p><strong>layout:</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;android.support.design.widget.FloatingActionButton</span><br><span class="line">       android:<span class="built_in">id</span>=<span class="string">&quot;@+id/fab_btn&quot;</span></span><br><span class="line">       android:layout_width=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">       android:layout_height=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">       android:src=<span class="string">&quot;@drawable/ic_dialog_email&quot;</span></span><br><span class="line">       app:fabSize=<span class="string">&quot;normal&quot;</span></span><br><span class="line">       app:elevation=<span class="string">&quot;8dp&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>運行效果如下：<br><img src="button13.png" width=70% height=70% align=center/></p>
+<p><strong>Floating Action Buttonn</strong>的背景顏色預設是**@color&#x2F;colorAccent**，如果想要自訂背景顏色，只要改變屬性:<strong>backgroundTint</strong>就可以了<br><strong>layout:</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;android.support.design.widget.FloatingActionButton</span><br><span class="line">       android:<span class="built_in">id</span>=<span class="string">&quot;@+id/fab_btn&quot;</span></span><br><span class="line">       android:layout_width=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">       android:layout_height=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">       android:src=<span class="string">&quot;@drawable/ic_dialog_email&quot;</span></span><br><span class="line">       app:fabSize=<span class="string">&quot;normal&quot;</span></span><br><span class="line">       app:backgroundTint=<span class="string">&quot;@color/holo_green_dark&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>運行效果如下：<br><img src="button14.png" width=50% height=50% align=center/></p>
+<p>參考網站:<br><a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/widget/Button.html">Android Developer</a><br><a target="_blank" rel="noopener" href="https://material.io/guidelines/components/buttons.html#">Material Design Buttons</a><br><a target="_blank" rel="noopener" href="https://material.io/guidelines/components/buttons-floating-action-button.html#buttons-floating-action-button-floating-action-button">Material Design Buttons: Floating Action Button</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Blog/tags/Android/" rel="tag"># Android</a>
+              <a href="/Blog/tags/Material-Design/" rel="tag"># Material Design</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Blog/2018/01/07/MaterialDesign-Android-Text-Fields/" rel="prev" title="[Material Design] Android Text Fields">
+      <i class="fa fa-chevron-left"></i> [Material Design] Android Text Fields
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Blog/2018/01/15/MaterialDesign-Android-Selection-Controls/" rel="next" title="[MaterialDesign] Android Selection Controls">
+      [MaterialDesign] Android Selection Controls <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Raised-button"><span class="nav-number">1.1.</span> <span class="nav-text">Raised button</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flat-button"><span class="nav-number">1.2.</span> <span class="nav-text">Flat button</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Floating-button"><span class="nav-number">1.3.</span> <span class="nav-text">Floating button</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-a-Raised-button"><span class="nav-number">2.</span> <span class="nav-text">Create a Raised button</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-a-Flat-button"><span class="nav-number">3.</span> <span class="nav-text">Create a Flat button</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-a-Floating-Action-Button"><span class="nav-number">4.</span> <span class="nav-text">Create a Floating Action Button</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Nick Chen</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Blog/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Nick Chen</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Blog/js/utils.js"></script>
+
+<script src="/Blog/js/motion.js"></script>
+
+
+<script src="/Blog/js/schemes/muse.js"></script>
+
+
+<script src="/Blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

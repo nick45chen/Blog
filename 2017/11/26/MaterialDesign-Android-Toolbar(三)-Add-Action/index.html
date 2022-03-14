@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Blog/css/main.css">
+
+
+<link rel="stylesheet" href="/Blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nick45chen.github.io","root":"/Blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Introduction除了 Pop-up Menu 外，我們還可以在 Toolbar 上自定義 action">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Material Design] Android Toolbar(三) - Add-Action">
+<meta property="og:url" content="https://nick45chen.github.io/Blog/2017/11/26/MaterialDesign-Android-Toolbar(%E4%B8%89)-Add-Action/index.html">
+<meta property="og:site_name" content="代碼玩家 Nick&#39;s Blog">
+<meta property="og:description" content="Introduction除了 Pop-up Menu 外，我們還可以在 Toolbar 上自定義 action">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2017/11/26/MaterialDesign-Android-Toolbar(%E4%B8%89)-Add-Action/addAction01.png">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2017/11/26/MaterialDesign-Android-Toolbar(%E4%B8%89)-Add-Action/addAction01.png">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2017/11/26/MaterialDesign-Android-Toolbar(%E4%B8%89)-Add-Action/addAction02.png">
+<meta property="og:image" content="https://nick45chen.github.io/Blog/2017/11/26/MaterialDesign-Android-Toolbar(%E4%B8%89)-Add-Action/addAction03.png">
+<meta property="article:published_time" content="2017-11-26T13:57:50.000Z">
+<meta property="article:modified_time" content="2022-03-14T15:15:04.157Z">
+<meta property="article:author" content="Nick Chen">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Material Design">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nick45chen.github.io/Blog/2017/11/26/MaterialDesign-Android-Toolbar(%E4%B8%89)-Add-Action/addAction01.png">
+
+<link rel="canonical" href="https://nick45chen.github.io/Blog/2017/11/26/MaterialDesign-Android-Toolbar(%E4%B8%89)-Add-Action/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>[Material Design] Android Toolbar(三) - Add-Action | 代碼玩家 Nick's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">代碼玩家 Nick's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://nick45chen.github.io/Blog/2017/11/26/MaterialDesign-Android-Toolbar(%E4%B8%89)-Add-Action/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Blog/images/avatar.gif">
+      <meta itemprop="name" content="Nick Chen">
+      <meta itemprop="description" content="Coding for fun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="代碼玩家 Nick's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Material Design] Android Toolbar(三) - Add-Action
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-11-26 13:57:50" itemprop="dateCreated datePublished" datetime="2017-11-26T13:57:50+00:00">2017-11-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-03-14 15:15:04" itemprop="dateModified" datetime="2022-03-14T15:15:04+00:00">2022-03-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>除了 Pop-up Menu 外，我們還可以在 Toolbar 上自定義 action <span id="more"></span>例如：<br><img src="addAction01.png" width=50% height=50% align=center/></p>
+<h2 id="Add-Action-to-Toolbar"><a href="#Add-Action-to-Toolbar" class="headerlink" title="Add Action to Toolbar"></a>Add Action to Toolbar</h2><p>1.首先我們需要取得我們要顯示的 icon ，你可以在 <a target="_blank" rel="noopener" href="https://material.io/guidelines/">Material Design</a> 官網上尋找，或是在 <a target="_blank" rel="noopener" href="https://materialdesignicons.com/">Material Design icon</a> 上，尋找符合你需求且具有 Materical style 的 icon</p>
+<p>2.接下來把下載下來的 icon 放在根目錄下 res -&gt; drawable 目錄下，這邊比較需要注意的地方，要放在 Toolbar 的 action icon 尺寸最好為 48 或是 24，更詳細資訊請參考 <a target="_blank" rel="noopener" href="https://material.io/guidelines/style/icons.html#">Material icons</a></p>
+<p>3.接下來進到 res -&gt; menu 目錄下，打開我們新增 Pop-up Menu 的 XML 檔，在下面新增一個 item tag</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;menu xmlns:android=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span><br><span class="line">    xmlns:app=<span class="string">&quot;http://schemas.android.com/apk/res-auto&quot;</span>&gt;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    &lt;item</span><br><span class="line">        android:<span class="built_in">id</span>=<span class="string">&quot;@+id/item1_id&quot;</span></span><br><span class="line">        android:title=<span class="string">&quot;@string/main_item1&quot;</span> /&gt;</span><br><span class="line">    &lt;item</span><br><span class="line">        android:<span class="built_in">id</span>=<span class="string">&quot;@+id/item2_id&quot;</span></span><br><span class="line">        android:title=<span class="string">&quot;@string/main_item2&quot;</span> /&gt;</span><br><span class="line">    &lt;item</span><br><span class="line">        android:<span class="built_in">id</span>=<span class="string">&quot;@+id/item3_id&quot;</span></span><br><span class="line">        android:title=<span class="string">&quot;@string/main_item3&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;item</span><br><span class="line">        android:<span class="built_in">id</span>=<span class="string">&quot;@+id/search_id&quot;</span></span><br><span class="line">        android:title=<span class="string">&quot;&quot;</span></span><br><span class="line">        android:icon=<span class="string">&quot;@drawable/ic_search_white_24dp&quot;</span></span><br><span class="line">        app:showAsAction=<span class="string">&quot;always&quot;</span>/&gt;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">&lt;/menu&gt;</span><br></pre></td></tr></table></figure>
+
+<p>因為我們要顯示的是 icon 所以 title 不需要，留空，icon 使用我們剛剛下載放在 drawable 資料夾下的 icon ，showAsAction 屬性設定，有分為三種<br>    1.always 是強制顯示 icon<br>    2.ifRoom 是如果還有空間的話就顯示，沒有就隱藏在 pop-up menu 裡<br>    3.never 是隱藏，只顯示在 Pop-up Menu 中</p>
+<p>比較值得注意的是，如果你的 action 有超過一個以上，系統會建議你使用 ifRoom 在空間不夠的時候，會改顯示在 Pop-up Menu(ifRoom&#x2F;never) 中，那你最好也把 title 加上去。</p>
+<p>效果如下<br><img src="addAction01.png" width=50% height=50% align=center/></p>
+<p>如果你設定 ifRoom 在空間不足或是 設定 never 時，效果如下<br><img src="addAction02.png" width=50% height=50% align=center/></p>
+<p>4.如果仔細觀察市面上的 App 通常在 Toolbar 的左側，只會有一個按鈕，其中一種是用來返回上一頁，或結束此頁，接下來我們來新增左邊的 Action。<br>回到Activity中，在onCreate()的方法中，呼叫supporActionBar的setDisplayHomeAsUpEnabled()方法，將其設定為 true</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">		super.onCreate(saveInstanceState)</span><br><span class="line">		setContentView(R.layout.activity_main);</span><br><span class="line">		...</span><br><span class="line">		setSupportActionBar(toolbar);</span><br><span class="line">		getSupportActionBar().setDisplayHomeAsUpEnabled(<span class="literal">true</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>左側的返回鍵按鈕就跑出來了<br><img src="addAction03.png" width=50% height=50% align=center/></p>
+<h2 id="Add-On-Click-Listener-to-the-Action"><a href="#Add-On-Click-Listener-to-the-Action" class="headerlink" title="Add On-Click Listener to the Action"></a>Add On-Click Listener to the Action</h2><p>在監聽點擊事件方面，原則上與 Pop-up Menu 相同，可以參考上一篇 [Material Design] Android Toolbar(二) - Pop-up Menu。<br>特別的一點是，如果我們想新增左側返回鍵按鈕的 function，我們同樣也是回到 Activity 的 onOptionsItemSelected() 中做判斷</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public boolean onOptionsItemSelected(MenuItem item) &#123;</span><br><span class="line">    switch (item.getItemId()) &#123;</span><br><span class="line">    	...</span><br><span class="line">    	// 左側返回鍵的 <span class="built_in">id</span></span><br><span class="line">    	<span class="keyword">case</span> android.R.id.home:</span><br><span class="line">    		finish();</span><br><span class="line">    		<span class="built_in">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> super.onOptionsItemSelected(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>參考網站：<br><a target="_blank" rel="noopener" href="https://material.io/guidelines/style/icons.html#">Material icons</a><br><a target="_blank" rel="noopener" href="https://developer.android.com/training/appbar/actions.html">Android Adding and Handling Actions</a><br><a target="_blank" rel="noopener" href="https://material.io/guidelines/">Material Design</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Blog/tags/Android/" rel="tag"># Android</a>
+              <a href="/Blog/tags/Material-Design/" rel="tag"># Material Design</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Blog/2017/11/24/MaterialDesign-Android-Toolbar(%E4%BA%8C)-Pop-up-Menu/" rel="prev" title="[Material Design] Android Toolbar(二) - Pop-up Menu">
+      <i class="fa fa-chevron-left"></i> [Material Design] Android Toolbar(二) - Pop-up Menu
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Blog/2017/12/30/MaterialDesign-Android-Navigation-Drawer(%E4%B8%80)/" rel="next" title="[Material Design] Android Navigation Drawer(一)">
+      [Material Design] Android Navigation Drawer(一) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-Action-to-Toolbar"><span class="nav-number">2.</span> <span class="nav-text">Add Action to Toolbar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-On-Click-Listener-to-the-Action"><span class="nav-number">3.</span> <span class="nav-text">Add On-Click Listener to the Action</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Nick Chen</p>
+  <div class="site-description" itemprop="description">Coding for fun</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Blog/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Nick Chen</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/Blog/lib/anime.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.min.js"></script>
+  <script src="/Blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Blog/js/utils.js"></script>
+
+<script src="/Blog/js/motion.js"></script>
+
+
+<script src="/Blog/js/schemes/muse.js"></script>
+
+
+<script src="/Blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
