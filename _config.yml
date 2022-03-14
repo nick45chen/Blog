@@ -14,7 +14,7 @@ timezone: ''
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://nickchen450.github.io/Blog/
+url: https://nick45chen.github.io/Blog/
 root: /Blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
