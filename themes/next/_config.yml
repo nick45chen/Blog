@@ -263,7 +263,7 @@ reward_settings:
   # If true, reward will be displayed in every article by default.
   enable: false
   animation: false
-  #comment: Donate comment here.
+  #comment: 用一杯咖啡支持好作品.
 
 reward:
   #wechatpay: /images/wechatpay.png
