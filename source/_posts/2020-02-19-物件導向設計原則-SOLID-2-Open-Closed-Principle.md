@@ -2,6 +2,7 @@
 title: '物件導向設計原則(SOLID)#2 - Open Closed Principle'
 date: 2020-02-19 14:06:36
 tags:
+description: 
 ---
 
 ### Open Closed Principle (OCP)
