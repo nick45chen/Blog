@@ -48,6 +48,21 @@ npm update
 
 ## 新增文章流程
 
+### 方式 A：自動化草稿 workflow（推薦）
+
+主題 → 研究 → 大綱 → 初稿 → 審核 → 發佈，全流程由 skill 協助：
+
+1. 觸發 `/draft-post <主題>`：研究官方資料、產出大綱（會停下來等你確認）、寫入 `source/_drafts/YYYY-MM-DD-<slug>.md`。
+   - 固定五段式結構：**Why / What / How / 注意事項 / 參考資料**
+2. 本機預覽：`npm run server -- --draft`（草稿預設不渲染，要加 `--draft`）
+3. 直接編輯草稿檔，或請 Claude 修訂特定段落
+4. 滿意後觸發 `/publish-draft <檔名>`：pre-flight 檢查 → `hexo publish` 移到 `_posts/` 並補 `date`
+5. 部署：`/hexo-redeploy` 或手動 git add / commit / push
+
+兩個 skill 都**不會自動 commit / push / build**；發佈與部署的決策權保留給使用者。
+
+### 方式 B：手動
+
 ```bash
 npx hexo new "文章標題"
 ```

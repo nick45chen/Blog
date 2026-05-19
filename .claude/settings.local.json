@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/knst/.claude/skills/git-commit/**)",
+      "Read(//Users/knst/.claude/skills/**)",
+      "Bash(npm outdated *)",
+      "Bash(npm --version)",
+      "Bash(mkdir -p /Users/knst/.claude/plans)",
+      "Read(//Users/knst/.claude/plans/**)",
+      "WebFetch(domain:github.com)",
+      "Bash(git commit -m ' *)"
+    ]
+  }
+}
