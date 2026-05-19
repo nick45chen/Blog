@@ -96,3 +96,48 @@ tags:
 - 除非使用者明示，**不要自動 commit**，只修改檔案
 - 改動 `_config.yml` 或 `themes/next/_config.yml` 後，提醒使用者用 `npm run server` 在本機預覽再 push
 - 修改文章 / 設定時，避免一併動到 `themes/next/` 內的主題原始碼，除非使用者明確要求客製主題
+
+## 中文排版規則
+
+本部落格採用 [sparanoid/chinese-copywriting-guidelines](https://github.com/sparanoid/chinese-copywriting-guidelines) 規範。
+撰寫或修改 `source/_posts/*.md` 時請套用以下規則；完整版與邊界案例請參考 `.claude/skills/chinese-copywriting/SKILL.md`（或直接觸發 `/chinese-copywriting`）。
+
+### 核心規則
+
+**間距**
+
+- 中文與英文之間加空格：`在 LeanCloud 上` ✅ / `在LeanCloud上` ❌
+- 中文與數字之間加空格：`花了 5000 元` ✅
+- 數字與單位之間加空格：`10 Gbps`、`20 TB` ✅
+- 例外：度數與百分比不加空格 → `90°`、`15%`
+- 全形標點兩側不加空格：`iPhone，好開心` ✅ / `iPhone ，好開心` ❌
+
+**標點**
+
+- 中文整句用全形 `，。！？：；「」（）`，英文整句用半形 `, . ! ? : ; " " ( )`
+- 數字一律半形（不用 `１２３`）
+- zh-tw 引號用直角引號 `「」`，嵌套用 `『』`
+- 不要重複標點（避免 `！！！！`、`？？！！`）
+
+**專名大小寫**
+
+- 維持品牌官方寫法：`GitHub`、`iOS`、`macOS`、`JavaScript`、`TypeScript`、`Node.js`、`npm`、`Android`、`Hexo`、`NexT`
+- 不用非正式縮寫（`Ts` → `TypeScript`、`h5` → `HTML5`、`nextjs` → `Next.js`）
+- Android 元件名連寫保留 PascalCase：`AlarmManager`、`JobScheduler`、`RecyclerView`、`ViewPager`
+
+### 套用範圍與例外
+
+| 要套規則 | 不要動 |
+|---|---|
+| 內文段落 | YAML front matter（`title`、`date`、`tags` 等欄位值）|
+| Markdown 連結文字 `[text]` | 連結 URL `(url)` |
+| 行內 code 兩側中英間距 | 行內 code 內部 `` `class` `` |
+| 圖片 alt 文字 | 圖片路徑 |
+| 一般 Markdown | Fenced code block、`{% %}` Hexo tag plugin、HTML 標籤、數學式 |
+
+### Before / After 範例
+
+```
+❌ 使用AlarmManager每過15分鐘叫醒設備一次,前提是當設備連上Wi-Fi或接上電源 (利大於弊).
+✅ 使用 AlarmManager 每過 15 分鐘叫醒設備一次，前提是當設備連上 Wi-Fi 或接上電源（利大於弊）。
+```
