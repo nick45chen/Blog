@@ -71,14 +71,15 @@ tags:
 
 ## 部署管線
 
-**目前生效**：`.github/workflows/pages.yml`
+**目前生效**：`.github/workflows/pages.yml`（GitHub Pages from Actions 官方模式）
 
-- **觸發條件**：push 到 `master`
-- **流程**：`actions/checkout` → Node.js 17 → `npm install` → `npm run build` → `peaceiris/actions-gh-pages@v3` 把 `public/` 推到 `gh-pages` 分支
-- 使用 `secrets.GITHUB_TOKEN`，不需額外設定 PAT
-- GitHub Pages 的 Source 分支需設為 `gh-pages`
-
-**已停用**：`.travis.yml` 仍保留在 repo 中（早期透過 Travis CI 部署），但實際部署改由 GitHub Actions 處理。除非要切回 Travis，否則不必動它。
+- **觸發條件**：push 到 `master`，或在 Actions tab 上手動 `workflow_dispatch`
+- **流程**：
+  - `build` job：`actions/checkout@v4` → Node.js 20 → `actions/configure-pages@v5` → `npm install` → `npm run build` → `actions/upload-pages-artifact@v3` 把 `public/` 上傳成 artifact
+  - `deploy` job：`actions/deploy-pages@v4` 直接由 artifact 部署到 GitHub Pages
+- 使用內建的 `GITHUB_TOKEN` 與 `id-token` OIDC，不需額外 PAT
+- 已加上 `concurrency: pages` 防止多次 push 同時部署
+- **不再使用 `gh-pages` 分支**：GitHub Pages 的 Source 需設為 **GitHub Actions**（Settings → Pages → Build and deployment → Source）
 
 ## 重要設定備忘
 
