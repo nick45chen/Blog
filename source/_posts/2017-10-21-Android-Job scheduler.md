@@ -6,13 +6,13 @@ tags: 'Android'
 
 ## Introduction
 
-Job Sceduler 是一種高效的背景作業，能在一定程度上提高電池的使用壽命，同時也能給開發者節省開發的時間。
+Job Scheduler 是一種高效的背景作業，能在一定程度上提高電池的使用壽命，同時也能給開發者節省開發的時間。
 <!-- more --> 
 在Android 開發中，你可能會遇到，需要在某個時間點或滿足某個條件時，才執行特定的任務。
 例如：當設備連上Wi-Fi或接上電源的時候，或是每過15分鐘，定期上傳數據資料，在以前我們可能考慮過使用 Handlers 延遲上傳，但萬一用戶或系統關閉他們的應用程式呢？這時你可能會考慮使用AlarmManager ，前提是在用戶沒有關機過的狀態下，才能正常運行。另外，我們還沒把網路狀態改變的情況(斷線)考慮進去，這時你可能需要註冊一個廣播，在網路恢復時進行額外的邏輯處理，以確保你的程序正常的執行。
 
 
-以上種種情形，真的是會讓開發者苦惱許久，幸運的是現在Google都幫你準備好了，Job Sceduler已經與新的系統緊密的結合，你只需要事先設定好執行的條件，條件的判斷就交給系統去處理，這你支新的API只會在你滿足條件時執行。
+以上種種情形，真的是會讓開發者苦惱許久，幸運的是現在Google都幫你準備好了，Job Scheduler已經與新的系統緊密的結合，你只需要事先設定好執行的條件，條件的判斷就交給系統去處理，這個新的 API 只會在你滿足條件時執行。
 
 看看我們實際上如何做到這一點
 
@@ -23,13 +23,13 @@ public class JobSchedulerService extends JobService {
     @Override
     public boolean onStartJob(JobParameters params) {
     	//返回true，表示該工作耗時，需要執行結束時手動調用jobFinished()，來銷毀任務
-        //返回false，代表任務處理不需要很長的時間，在resurn時已經處理結束
+        //返回false，代表任務處理不需要很長的時間，在 return 時已經處理結束
         return false;
     }
 
     @Override
     public boolean onStopJob(JobParameters params) {
-    	//只有在 onStartJob() 返回ture時，手動調用 jobFinished() 後才會執行此方法
+    	//只有在 onStartJob() 返回 true 時，手動調用 jobFinished() 後才會執行此方法
     	//返回false來銷毀此工作
         return false;
     }

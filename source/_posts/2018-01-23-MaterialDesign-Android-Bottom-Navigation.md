@@ -19,7 +19,7 @@ tags: ['Android','Material Design']
 在**Android Studio**中，也提中快速創建**Bottom Navigation**的模板，不過我們本篇會選用**Empty Activity**
 <img src="bottom_navigation01.png" width=100% height=100% align=center/>
 
-1.要使用**BottomNavigationView**，首先需要把**support:design library**添加進我們的**Project**中，在 File -> Project Structure -> Dependencles 下新增。
+1.要使用**BottomNavigationView**，首先需要把**support:design library**添加進我們的**Project**中，在 File -> Project Structure -> Dependencies 下新增。
 <img src="bottom_navigation02.png" width=100% height=100% align=center/>
 
 2.接下來在**layout**裡，創建一個**BottomNavigationView**，背景顏色使用跟窗口背景顏色一樣
@@ -73,7 +73,7 @@ layout:
 ## Customize the Bottom Navigation
 接下來我們要改變**BottomNavigationView**被選中文字/圖示顏色，包含**BottomNavigationView**的背景。
 
-**BottomNavigationView**預設選中的顏色是當前**Theme**中的**color primary**，也就是跟**Toolbar**顏色一至
+**BottomNavigationView**預設選中的顏色是當前**Theme**中的**color primary**，也就是跟**Toolbar**顏色一致
 
 1.首先建立一個新**style**，並自定義**color primary**的顏色
 

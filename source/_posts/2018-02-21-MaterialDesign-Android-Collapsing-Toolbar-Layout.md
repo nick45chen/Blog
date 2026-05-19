@@ -8,26 +8,26 @@ tags: ['Android','Material Design']
 **CollapsingToolbarLayout**是被設計為**AppBarLayout**的子類，用於完成一些折疊的UI視覺效果。<!-- more -->**CollapsingToolbarLayout**的功能大概有以下幾點：
 
 ### Collapsing title
-折疊的Title文字效果，顧名思義在`AppBar`，完全展開時，會顯示比較大的字型，不過當滑動在螢幕外時，字體會在摺疊動畫結束後，顯示比較小的字型。顯示的文字可以特過屬性`setTitle(CharSequence)`設置，文字的樣式，可以透過`collapsedTextAppearance`與`expandedTextAppearance`兩個屬性調整。
+折疊的Title文字效果，顧名思義在`AppBar`，完全展開時，會顯示比較大的字型，不過當滑動在螢幕外時，字體會在摺疊動畫結束後，顯示比較小的字型。顯示的文字可以透過屬性`setTitle(CharSequence)`設置，文字的樣式，可以透過`collapsedTextAppearance`與`expandedTextAppearance`兩個屬性調整。
 
 ### Content scrim
-當`Appbar`滑動到一定的程度時，所顯示/隱藏的主體顏色，即`Toolbar`顏色。可以特過`setContentScrim(Drawable)`
+當`Appbar`滑動到一定的程度時，所顯示/隱藏的主體顏色，即`Toolbar`顏色。可以透過`setContentScrim(Drawable)`
 
 ### Status bar scrim
-跟**Content scrim**相同，不過是狀態列的顏色，可以特過屬性**setStatusBarScrim(Drawable)**設置，不果只有在Android系統版本5.0以上，並且設定**fit system windows**時有效果
+跟**Content scrim**相同，不過是狀態列的顏色，可以透過屬性**setStatusBarScrim(Drawable)**設置，不過只有在Android系統版本5.0以上，並且設定**fit system windows**時有效果
 
 ### Parallax scrolling children
 子類別可以在滾動時選擇，是否以"視差"的方式跟隨滾動，可以透過屬性**layout_collapseMode="parallax"**設定
 
 ## Add the Design Library
-再使用**CollapsingToolbarLayout**前，必須先將**Design Library**加入專案中。在File -> Project Structure -> Dependencles 下新增
+在使用**CollapsingToolbarLayout**前，必須先將**Design Library**加入專案中。在File -> Project Structure -> Dependencies 下新增
 <img src="collapsing_toolbar01.png" width=100% height=100% align=center/>
 
 ## Create a Collapsing Toolbar Layout
 
 ### Change the Default App Theme
 接下來我們必須創建自己的**Toolbar**，首先將**style.xml**裡的**AppTheme**改為**NoActionBar**，此舉將讓每頁**Activity**預設無**Action Bar**
-sytle.xml:
+style.xml:
 ``` bash
 <resources>
 	...
@@ -69,7 +69,7 @@ layout:
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/collpasingToolbarLayout"
+            android:id="@+id/collapsingToolbarLayout"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginEnd="64dp"

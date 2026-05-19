@@ -9,7 +9,7 @@ tags: ['Android','Material Design']
 大部分使用場景中都搭配**AppbarLayout**、**CollapsingToolbarLayout**、**Toolbar**來使用，導致在不知不覺中，大家也有可能認為**CoordinatorLayout**只能跟這幾個佈局一起使用。
 其實**CoordinatorLayout**的功能可不止於此，本文就簡單介紹**CoordinatorLayout**的強大功能
 
-**CoordinatorLayout**最主要兩的作用
+**CoordinatorLayout**最主要的兩個作用
 1.當作根佈局
 2.當作主要容器，協調一個或多個子View行為
 
@@ -19,7 +19,7 @@ tags: ['Android','Material Design']
 
 可以看到上圖佈局中有兩個**Button1**、**Button2**，移動**Button1**，**Button2**也會跟著移動。
 
-如果不使用**CoodinatorLayout**來實現，那麼兩個**Button**就必須相互持有，然後再**onTouchEvent裡做判斷**，如果需要更多的**View**根據**Button1**的移動，做出相應的響應，實現起來除了耦合度很高，要寫出完整的判斷是也相當不容易。
+如果不使用**CoordinatorLayout**來實現，那麼兩個**Button**就必須相互持有，然後再**onTouchEvent裡做判斷**，如果需要更多的**View**根據**Button1**的移動，做出相應的響應，實現起來除了耦合度很高，要寫出完整的判斷是也相當不容易。
 
 ## Behaviors
 **CoordinatorLayout**使用核心就是**Behaviors**，透過**Behaviors**可以執行你訂製的動作，在**Behaviors**中，有兩種角色

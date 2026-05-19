@@ -26,7 +26,7 @@ tags: ['Android','Material Design']
 接下來我們來看看在**Android**裡如何實現。
 
 ## Create a Raised button
-使用**Raised buttons**很容易，只要在 layout 裡直接引用**AppConpact Library**裡的，具有**Material features** 的 **AppCompatButton** 就可以了
+使用**Raised buttons**很容易，只要在 layout 裡直接引用**AppCompat Library**裡的，具有**Material features** 的 **AppCompatButton** 就可以了
 
 **layout:**
 ``` bash
@@ -40,7 +40,7 @@ tags: ['Android','Material Design']
 <img src="button06.png" width=50% height=50% align=center/>
 
 如何更換**AppCompatButton**的按鈕顏色呢？
-首先打開**sytles.xml**文件，在裡面創建一個 new style 定義背景及文字顏色
+首先打開**styles.xml**文件，在裡面創建一個 new style 定義背景及文字顏色
 
 **styles.xml:**
 ``` bash
@@ -68,7 +68,7 @@ tags: ['Android','Material Design']
 <img src="button07.png" width=50% height=50% align=center/>
 
 ## Create a Flat button
-創建**Flat button**也很容易，打開**sytles.xml**文件，在裡面創建一個 new style，**Widget.AppCompat.Button.Borderless** 表示你的按鈕背景為透明，當然你也可以在**style**裡，定義文字的顏色
+創建**Flat button**也很容易，打開**styles.xml**文件，在裡面創建一個 new style，**Widget.AppCompat.Button.Borderless** 表示你的按鈕背景為透明，當然你也可以在**style**裡，定義文字的顏色
 
 **styles.xml:**
 ``` bash
@@ -80,7 +80,7 @@ tags: ['Android','Material Design']
 </resources>
 ```
 
-接著創建一個**AppCompatButton**，把**sytle**設定進去就好
+接著創建一個**AppCompatButton**，把**style**設定進去就好
 
 **layout:**
 ``` bash
@@ -95,7 +95,7 @@ tags: ['Android','Material Design']
 <img src="button08.png" width=50% height=50% align=center/>
 
 ## Create a Floating Action Button
-接下來我們來創建**Floating Action Buttonn**，首先要先確認**Design Library**有加進我們的**Project**
+接下來我們來創建**Floating Action Button**，首先要先確認**Design Library**有加進我們的**Project**
 <img src="button09.png" width=100% height=100% align=center/>
 
 之後就可以在 layout 裡直接引用了
@@ -111,7 +111,7 @@ tags: ['Android','Material Design']
 運行效果如下：
 <img src="button10.png" width=50% height=50% align=center/>
 
-你也可以在**Floating Action Buttonn**中，添加icon
+你也可以在**Floating Action Button**中，添加icon
 
 **layout:**
 ``` bash
@@ -125,9 +125,9 @@ tags: ['Android','Material Design']
 運行效果如下：
 <img src="button11.png" width=50% height=50% align=center/>
 
-設定**Floating Action Buttonn**的size
+設定**Floating Action Button**的size
 以 size 可分為:
-**1.noraml circle = 56x56dp**
+**1. normal circle = 56x56dp**
 **2.Mini circle = 40x40dp**
 
 **layout:**
@@ -143,7 +143,7 @@ tags: ['Android','Material Design']
 運行效果如下：
 <img src="button12.png" width=70% height=70% align=center/>
 
-**Floating Action Buttonn**還有一個很符合此命名的屬性 elevation
+**Floating Action Button**還有一個很符合此命名的屬性 elevation
 其中 elevation 設定的 DP 越大，則按鈕背後的陰影也會越大
 
 **layout:**
@@ -160,7 +160,7 @@ tags: ['Android','Material Design']
 運行效果如下：
 <img src="button13.png" width=70% height=70% align=center/>
 
-**Floating Action Buttonn**的背景顏色預設是**@color/colorAccent**，如果想要自訂背景顏色，只要改變屬性:**backgroundTint**就可以了
+**Floating Action Button**的背景顏色預設是**@color/colorAccent**，如果想要自訂背景顏色，只要改變屬性:**backgroundTint**就可以了
 **layout:**
 ``` bash
  <android.support.design.widget.FloatingActionButton

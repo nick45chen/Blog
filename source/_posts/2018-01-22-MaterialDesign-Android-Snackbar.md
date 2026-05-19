@@ -16,7 +16,7 @@ tags: ['Android','Material Design']
 接下來我們就來實作**Snackbar**
 
 ## Create a Snackbar
-要使用**Snackbar**，首先需要把**support:design library**添加進我們的**Project**中，在 File -> Project Structure -> Dependencles 下新增。
+要使用**Snackbar**，首先需要把**support:design library**添加進我們的**Project**中，在 File -> Project Structure -> Dependencies 下新增。
 <img src="snackbar01.png" width=100% height=100% align=center/>
 
 接下來在代碼中使用**Snackbar**，第一個參數**view**必須傳入對應的**根佈局**，第二的參數是顯示文字，第三個參數是顯示的時間。

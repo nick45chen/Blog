@@ -19,7 +19,7 @@ tags: ['Android','Material Design']
 ## Create a Tab Layout with Text: Fixed Mode
 
 ### 添加support:design library
-使用**TabLayout**，首先需要把**support:design library**添加進我們的**Project**中，在 File -> Project Structure -> Dependencles 下新增。
+使用**TabLayout**，首先需要把**support:design library**添加進我們的**Project**中，在 File -> Project Structure -> Dependencies 下新增。
 <img src="tabs02.png" width=100% height=100% align=center/>
 
 ### 創建TabLayout
@@ -93,7 +93,7 @@ layout:
 <img src="tabs05.png" width=50% height=50% align=center/>
 
 ### Create Java class for item layout
-接下來創建**Freagment class**
+接下來創建**Fragment class**
 
 java:
 ``` bash

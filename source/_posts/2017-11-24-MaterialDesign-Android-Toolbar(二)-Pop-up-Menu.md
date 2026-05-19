@@ -16,7 +16,7 @@ tags: ['Android','Material Design']
 <img src="popup02.png" width=50% height=50% align=center/>
 
 2.進入剛剛創建的 menu file 新增 item tag，然後再 tag 中定義屬性 id 與 title，title 為顯示在 UI 畫面上的名稱
-<img src="popup03.png" width=1000% height=1000% align=center/>
+<img src="popup03.png" width=50% height=50% align=center/>
 
 3.回到 Activity 中，Override 兩個 Methods
 
@@ -25,12 +25,12 @@ public class MainActivity extends AppCompatActivity {
 	...
 
 	@Override
-	protected void onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu) {
 		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
-	protected void onOptionsItemSelected(Menu menu) {
+	public boolean onOptionsItemSelected(MenuItem item) {
 		return super.onOptionsItemSelected(item);
 	}
 
