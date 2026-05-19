@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
 ``` bash
  <android.support.v7.widget.Toolbar
-    android:id="@+id/toolbar
+    android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="?attr/colorPrimary"

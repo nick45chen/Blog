@@ -70,7 +70,7 @@ tags: ['Android','Material Design']
 <img src="appbar02.gif" width=50% height=50% align=center/>
 
 
-如果把第一個**Child View(TextView)**的**Flag移除**，並在第二個**Child View(Toolbar)**中設置，由於第一個**Child View**沒有設置任何**Flag**，所以第二個**Child View(TextView)**即使設置**Flag**也沒有效果
+如果把第一個**Child View(TextView)**的**Flag移除**，並在第二個**Child View(Toolbar)**中設置，由於第一個**Child View**沒有設置任何**Flag**，所以第二個**Child View(Toolbar)**即使設置**Flag**也沒有效果
 ``` bash
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout

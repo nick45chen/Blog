@@ -26,10 +26,10 @@ Headers 通常用來顯示圖片，或聯絡資訊，當然這並不是所有的
 <img src="navigationDrawer03.png" width=100% height=100% align=center/>
 
 ### Add Design Library to Our Project
-在創建 Navigation Drawer 的第一步，我們必須先確認此專案有 import Design Library，可以在 File -> Project Structure -> Dependencles 下新增。
+在創建 Navigation Drawer 的第一步，我們必須先確認此專案有 import Design Library，可以在 File -> Project Structure -> Dependencies 下新增。
 <img src="navigationDrawer04.png" width=100% height=100% align=center/>
 
-新增完在 build.gradle 下，注意版本需與 appcompat-v7 的版本一至
+新增完在 build.gradle 下，注意版本需與 appcompat-v7 的版本一致
 <img src="navigationDrawer05.png" width=100% height=100% align=center/>
 
 ### Remove default toolbar form application
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 <img src="navigationDrawer07.png" width=100% height=100% align=center/>
 
 緊接著我們在 DrawerLayout 添加屬性 id 與 fitsSystemWindows = true。
-fitsSystemWindows 為 ture 代表你的 DrawerLayout size 會與你的 Activity size 一至
+fitsSystemWindows 為 true 代表你的 DrawerLayout size 會與你的 Activity size 一致
 
 ``` bash
 <?xml version="1.0" encoding="utf-8"?>

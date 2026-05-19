@@ -3,8 +3,8 @@ title: '[Android] Gaussian blur Effect'
 date: 2018-12-01 16:50:50
 tags: ['Android']
 ---
-## Intrdoction
-本篇文章來介紹，如何在`Android`上，簡單實現高斯模糊（Gaussian blur)效果。又稱毛玻璃效果或磨砂效果。透果使用`Google`提供的`RenderScript`Api，一個強大的圖片處理框架，幫助`Android`開法者專注於圖片處理算法的邏輯，而不是處理圖像複雜的計算。<!-- more -->
+## Introduction
+本篇文章來介紹，如何在`Android`上，簡單實現高斯模糊（Gaussian blur)效果。又稱毛玻璃效果或磨砂效果。透過使用`Google`提供的`RenderScript`Api，一個強大的圖片處理框架，幫助`Android`開發者專注於圖片處理算法的邏輯，而不是處理圖像複雜的計算。<!-- more -->
 
 ## RenderScript
 `RenderScript`根據`Android`官方網站的介紹，在計算的效率上，能充分利用GPU，CPU的計算能力，所以在編寫代碼的時候，毋須擔心具體硬件的不同，都能寫出具高效率的代碼。此篇文章實現的`Gaussian blur`效果，只是使用到了`RenderScript `其中一個操作類`ScriptIntrinsicBlur`，`RenderScript`Api的強大遠不及此，更詳情可以參考 [Android 官網 RenderScript介紹](https://developer.android.com/guide/topics/renderscript/compute)
